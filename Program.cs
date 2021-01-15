@@ -42,7 +42,7 @@ namespace CsharpScripting
                         scripts.Add(Directory.GetFiles(path)[i]);
                         // Retrieve the code as a string
                         string code = File.ReadAllText(scripts[i]);
-                        // Execute the C# code
+                        // Execute the C# code and add default imports to the scripts you are running. In this case the System Class and the Generic Class
                         Task result = CSharpScript.EvaluateAsync(code, ScriptOptions.Default.AddImports("System", "System.Collections.Generic"));
                         Console.WriteLine(scripts[i] + " executed successfully");
                     }
