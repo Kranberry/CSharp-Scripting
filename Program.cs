@@ -29,6 +29,8 @@ namespace CsharpScripting
         {
             // Get the current assembly to give access to the scripting interface
             var asm = Assembly.GetCallingAssembly();
+            // This is not nessecasry, but I have it here in order to keep track in messaging the user what script went wrong
+            string scriptToRun = filename;
             // The path to the scripts
             string path = "scripts/" + filename;
             List<String> scripts = new();
@@ -44,13 +46,13 @@ namespace CsharpScripting
                     {
                         // Get the file in position i, the whole path
                         scripts.Add(Directory.GetFiles(path)[i]);
+                        scriptToRun = scripts[i];
                         // Retrieve the code as a string
                         string code = File.ReadAllText(scripts[i]);
                         // Execute the C# code and add default imports to the scripts you are running. In this case the System Class and the Generic Class 
-                        Task result = CSharpScript.EvaluateAsync(code,
-                            ScriptOptions.Default  // Set the default options like imports and refrences
+                        Task result = CSharpScript.EvaluateAsync(code,ScriptOptions.Default  // Set the default options like imports and refrences
                             .AddReferences(asm)     // Add this assembly as a refrence
-                            .AddImports("System", "System.Collections.Generic", "CsharpScripting")); // Add this namespace as a default using directive
+                            .AddImports("System", "System.Collections.Generic", "CsharpScripting.ScriptingInterface")); // Add this namespace as a default using directive
 
                         //ScriptOptions.Default.AddReferences("CsharpScripting"));
                         Console.WriteLine(scripts[i] + " executed successfully");
@@ -62,8 +64,7 @@ namespace CsharpScripting
                     string code = File.ReadAllText(path + ".cs");
                     // Execute the C# code
 
-                    Task result = CSharpScript.EvaluateAsync(code,
-                        ScriptOptions.Default
+                    Task result = CSharpScript.EvaluateAsync(code, ScriptOptions.Default
                         .AddReferences(asm)
                         .AddImports("System", "System.Collections.Generic", "CsharpScripting.ScriptingInterface"));
                     Console.WriteLine("Script executed successfully");
@@ -73,6 +74,7 @@ namespace CsharpScripting
             catch (Exception e)
             {
                 // Print out the exception to the wrongdoer
+                Console.WriteLine($"Exception in {scriptToRun}");
                 Console.WriteLine(e);
             }
         }

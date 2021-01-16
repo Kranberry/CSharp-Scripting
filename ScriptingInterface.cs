@@ -32,5 +32,10 @@ namespace CsharpScripting
 
             return person;
         }
+
+        public static List<Person> GetAllPeople()
+        {
+            return people;
+        }
     }
 }
