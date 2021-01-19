@@ -8,5 +8,5 @@ for(int i = 0; i < 10; i++)
     string firstName = listOfFirstNames[rand.Next(0, listOfFirstNames.Count)];
     string lastName = listOfLastNames[rand.Next(0, listOfLastNames.Count)];
     int age = listOfAges[rand.Next(0, listOfAges.Count)];
-    CreatePerson(firstName, lastName, age);
+    NewPerson(firstName, lastName, age);
 }

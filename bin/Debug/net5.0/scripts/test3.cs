@@ -1,8 +1,8 @@
-CallFromScript("Calling methon on the application from the script");
+Print("Calling methon on the application from the script");
 Console.WriteLine(";D");
 
-CreatePerson("Lasse", "Åber", 53);
+NewPerson("Lasse", "Åber", 53);
 
-var person = PersonGetInfo("Lasse");
+var person = GetPerson("Lasse");
 Console.WriteLine($"{person.FirstName} : {person.LastName} : {person.Age}");
 Console.WriteLine(";DD");

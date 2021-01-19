@@ -1,6 +1,6 @@
-var people = GetAllPeople();
+var people = GetPeople();
 
 foreach (var person in people)
 {
-    Console.WriteLine(person.FirstName + "  :  " + person.LastName);
+    Print(person.FirstName + "  :  " + person.LastName);
 }
