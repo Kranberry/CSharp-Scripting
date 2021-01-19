@@ -1,7 +1,7 @@
 # CSharp-Scripting
 This is a simple example of how you can run C# scripts on your .net application, either by filename or run everything inside a directory.
 
-This program uses .net5 framework and the following libraries for the scripting implementation
+This program uses .net5 and the following libraries for the scripting implementation
 
 Microsoft.CodeAnalysis.CSharp.Scripting;  |||  
 Microsoft.CodeAnalysis.Scripting;
